@@ -1,0 +1,30 @@
+diff -ur a/src/hints/HintsToPot.cpp b/src/hints/HintsToPot.cpp
+--- a/src/hints/HintsToPot.cpp	2022-07-13 00:20:59.000000000 +0300
++++ b/src/hints/HintsToPot.cpp	2022-07-15 10:36:34.390774699 +0300
+@@ -1,4 +1,5 @@
+ #include <iostream>
++#include <fstream>
+ #include <vector>
+ #include <string>
+ #include <boost/filesystem.hpp>
+@@ -9,7 +10,7 @@
+ 
+ bool write_to_pot(boost::filesystem::path path, const std::vector<std::pair<std::string, std::string>>& data)
+ {
+-	boost::filesystem::ofstream file(std::move(path), std::ios_base::app);
++	std::ofstream file(std::move(path.string()), std::ios_base::app);
+ 	for (const auto& element : data)
+ 	{
+ 		//Example of .pot element 
+diff -ur a/src/slic3r/GUI/ScriptExecutor.cpp b/src/slic3r/GUI/ScriptExecutor.cpp
+--- a/src/slic3r/GUI/ScriptExecutor.cpp	2022-07-13 00:20:59.000000000 +0300
++++ b/src/slic3r/GUI/ScriptExecutor.cpp	2022-07-14 17:39:17.235907221 +0300
+@@ -14,6 +14,8 @@
+ #include <angelscript/add_on/scriptstdstring/scriptstdstring.h>
+ #include <angelscript/add_on/scriptmath/scriptmath.h>
+ 
++#include <boost/filesystem/string_file.hpp>
++
+ using namespace gw;
+ 
+ namespace Slic3r {  namespace GUI {
