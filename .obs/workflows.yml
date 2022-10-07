@@ -1,10 +1,8 @@
-rebuild_master:
+workflow:
   steps:
-    - rebuild_package:
-        project: home:CyberCastle
-        package: SuperSlicer
+    - branch_package:
+        source_project: home:CyberCastle
+        source_package: SuperSlicer
+        target_project: home:CyberCastle
   filters:
-    event: push
-    branches:
-      only:
-        - obs-package-generation
+    event: tag_push
