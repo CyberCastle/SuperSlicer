@@ -18,13 +18,13 @@
 
 %define __builder ninja
 Name:           SuperSlicer
-Version:        2.4.58.3+149.ge74cb02c1
+Version:        OBS-2.4.58.5
 Release:        0
 Summary:        G-code generator for 3D printers (RepRap, Makerbot, Ultimaker etc.)
 License:        AGPL-3.0-only
 Group:          Hardware/Printing
 URL:            https://github.com/supermerill/SuperSlicer
-Source0:        SuperSlicer-%{version}.tar.xz
+Source0:        SuperSlicer-%{version}.tar
 # PATCH-FIX-UPSTREAM PrusaSlicer-boost1.79.patch -- gh#prusa3d/PrusaSlicer#8238
 Patch0:         PrusaSlicer-boost1.79.patch
 Patch1:         PrusaSlicer-cereal.patch
