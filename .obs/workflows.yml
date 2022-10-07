@@ -1,0 +1,10 @@
+rebuild_master:
+  steps:
+    - rebuild_package:
+        project: home:CyberCastle
+        package: SuperSlicer
+  filters:
+    event: push
+    branches:
+      only:
+        - obs-package-generation
