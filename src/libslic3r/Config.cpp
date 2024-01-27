@@ -54,15 +54,15 @@ std::string toString(OptionCategory opt) {
     case OptionCategory::filoverride: return L("Filament overrides");
     case OptionCategory::customgcode: return L("Custom G-code");
     case OptionCategory::general: return L("General");
-    case OptionCategory::limits: return "Machine limits"; // if not used, no need ot ask for translation
-    case OptionCategory::mmsetup: return "Single Extruder MM Setup";
-    case OptionCategory::firmware: return "Firmware";
-    case OptionCategory::pad: return "Pad";
-    case OptionCategory::padSupp: return "Pad and Support";
+    case OptionCategory::limits: return L("Machine limits"); // if not used, no need ot ask for translation
+    case OptionCategory::mmsetup: return L("Single Extruder MM Setup");
+    case OptionCategory::firmware: return L("Firmware");
+    case OptionCategory::pad: return L("Pad");
+    case OptionCategory::padSupp: return L("Pad and Support");
     case OptionCategory::wipe: return L("Wipe Options");
     case OptionCategory::milling: return L("Milling");
     case OptionCategory::hollowing: return "Hollowing";
-    case OptionCategory::milling_extruders: return "Milling tools";
+    case OptionCategory::milling_extruders: return L("Milling tools");
     case OptionCategory::fuzzy_skin : return L("Fuzzy skin");
     }
     return "error";
@@ -114,7 +114,7 @@ std::string escape_strings_cstyle(const std::vector<std::string> &strs)
         bool should_quote = strs.size() == 1 && str.empty();
         for (size_t i = 0; i < str.size(); ++ i) {
             char c = str[i];
-            if (c == ' ' || c == ';' || c == '\t' || c == '\\' || c == '"' || c == '\r' || c == '\n') {
+            if (c == ' ' || c == ';' || c == ',' || c == '\t' || c == '\\' || c == '"' || c == '\r' || c == '\n') {
                 should_quote = true;
                 break;
             }
@@ -212,7 +212,7 @@ bool unescape_strings_cstyle(const std::string &str, std::vector<std::string> &o
         } else {
             for (; i < str.size(); ++ i) {
                 c = str[i];
-                if (c == ';')
+                if (c == ';' || c == ',')
                     break;
                 buf.push_back(c);
             }
@@ -229,7 +229,7 @@ bool unescape_strings_cstyle(const std::string &str, std::vector<std::string> &o
                 return true;
             c = str[i];
         }
-        if (c != ';')
+        if (c != ';' && c != ',')
             return false;
         if (++ i == str.size()) {
             // Emit one additional empty string.
